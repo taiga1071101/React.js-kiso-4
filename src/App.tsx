@@ -1,8 +1,9 @@
 import './App.css';
+import { SelfIntroduction } from './selfIntroduction';
 
 function App() {
   return (
-    <p>aa</p>
+    <SelfIntroduction />
   )
 }
 
