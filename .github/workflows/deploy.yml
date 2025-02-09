@@ -15,6 +15,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  upload-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Artifact
+        run: echo "Hello World" > test.txt
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: test.txt
   deploy:
     environment:
       name: github-pages
