@@ -34,9 +34,11 @@ jobs:
           mkdir -p dist/public
           # クライアントサイドのビルド
           npm run build
-          echo "Checking directory structure"
-          ls -R
           # 静的アセットのコピー
+          if [ -d "public" ] && [ "$(ls -A public)" ]; then
+          cp -r public/* dist/public/　else
+          echo "No files to copy from public/."
+          fi
           if [ -d "public" ]; then cp -r public/* dist/public/; fi
           # 静的HTMLの生成（SSRを使用）
           node dist/server.js --static
