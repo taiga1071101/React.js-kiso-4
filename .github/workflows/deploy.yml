@@ -26,11 +26,7 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - run: |
-          echo "Checking directory structure"
-          ls -R
-
+          
       - name: Build project
         run: |
           # 静的アセットの準備
@@ -38,6 +34,8 @@ jobs:
           mkdir -p dist/public
           # クライアントサイドのビルド
           npm run build
+          echo "Checking directory structure"
+          ls -R
           # 静的アセットのコピー
           if [ -d "public" ]; then cp -r public/* dist/public/; fi
           # 静的HTMLの生成（SSRを使用）
