@@ -30,6 +30,7 @@ jobs:
       - name: Build project
         run: |
           # 静的アセットの準備
+          rm -f dist/public
           mkdir -p dist/public
           # クライアントサイドのビルド
           npm run build
