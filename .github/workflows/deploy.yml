@@ -30,20 +30,10 @@ jobs:
       - name: Build project
         run: |
           # 静的アセットの準備
-          rm -rf dist/public
-          mkdir -p dist/public
-          set -e
+          rm -rf dist
+          
           # クライアントサイドのビルド
           npm run build
-          # 静的アセットのコピー
-          if [ -d "public" ] && [ "$(ls -A public)" ]; then
-            cp -r public/* dist/public/
-          else
-            echo "No files to copy from public/."
-          fi
-          if [ -d "public" ]; then cp -r public/* dist/public/; fi
-          # 静的HTMLの生成（SSRを使用）
-          node dist/server.js --static
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -51,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/public/'
+          path: 'dist/'
 
   deploy:
     needs: build
