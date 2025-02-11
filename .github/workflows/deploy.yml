@@ -32,13 +32,14 @@ jobs:
           # 静的アセットの準備
           rm -rf dist/public
           mkdir -p dist/public
+          set -e
           # クライアントサイドのビルド
           npm run build
           # 静的アセットのコピー
           if [ -d "public" ] && [ "$(ls -A public)" ]; then
-          　cp -r public/* dist/public/
+            cp -r public/* dist/public/
           else
-          　echo "No files to copy from public/."
+            echo "No files to copy from public/."
           fi
           if [ -d "public" ]; then cp -r public/* dist/public/; fi
           # 静的HTMLの生成（SSRを使用）
